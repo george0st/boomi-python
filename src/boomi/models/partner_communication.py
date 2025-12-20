@@ -134,6 +134,11 @@ class PartnerCommunication(BaseModel):
             # Include SSL options if present
             if 'FTPSSLOptions' in settings:
                 result['FTPSettings']['FTPSSLOptions'] = settings['FTPSSLOptions']
+            # Include Get/Send options if present (for remote_directory preservation)
+            if 'FTPGetOptions' in mapped:
+                result['FTPGetOptions'] = mapped['FTPGetOptions']
+            if 'FTPSendOptions' in mapped:
+                result['FTPSendOptions'] = mapped['FTPSendOptions']
             return result
 
         def extract_sftp_settings(sftp_opts):
@@ -156,6 +161,11 @@ class PartnerCommunication(BaseModel):
             # Include SSH options if present
             if 'SFTPSSHOptions' in settings:
                 result['SFTPSettings']['SFTPSSHOptions'] = settings['SFTPSSHOptions']
+            # Include Get/Send options if present (for remote_directory preservation)
+            if 'SFTPGetOptions' in mapped:
+                result['SFTPGetOptions'] = mapped['SFTPGetOptions']
+            if 'SFTPSendOptions' in mapped:
+                result['SFTPSendOptions'] = mapped['SFTPSendOptions']
             return result
 
         def extract_http_settings(http_opts):
