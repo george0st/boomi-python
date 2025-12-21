@@ -39,7 +39,7 @@ class DefaultOftpConnectionSettings(BaseModel):
 
     def __init__(
         self,
-        my_partner_info: OftpPartnerInfo,
+        my_partner_info: OftpPartnerInfo = SENTINEL,
         client_ssl_alias: str = SENTINEL,
         host: str = SENTINEL,
         port: int = SENTINEL,
@@ -75,7 +75,8 @@ class DefaultOftpConnectionSettings(BaseModel):
             self.client_ssl_alias = client_ssl_alias
         if host is not SENTINEL:
             self.host = host
-        self.my_partner_info = self._define_object(my_partner_info, OftpPartnerInfo)
+        if my_partner_info is not SENTINEL:
+            self.my_partner_info = self._define_object(my_partner_info, OftpPartnerInfo)
         if port is not SENTINEL:
             self.port = port
         if sfidciph is not SENTINEL:

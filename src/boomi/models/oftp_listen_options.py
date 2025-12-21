@@ -27,8 +27,8 @@ class OftpListenOptions(BaseModel):
 
     def __init__(
         self,
-        oftp_listen_options: OftpListenOptionsInfo,
-        oftp_partner_group: OftpPartnerGroupType,
+        oftp_listen_options: OftpListenOptionsInfo = SENTINEL,
+        oftp_partner_group: OftpPartnerGroupType = SENTINEL,
         partner_group_id: str = SENTINEL,
         **kwargs,
     ):
@@ -41,12 +41,14 @@ class OftpListenOptions(BaseModel):
         :param partner_group_id: partner_group_id, defaults to None
         :type partner_group_id: str, optional
         """
-        self.oftp_listen_options = self._define_object(
-            oftp_listen_options, OftpListenOptionsInfo
-        )
-        self.oftp_partner_group = self._define_object(
-            oftp_partner_group, OftpPartnerGroupType
-        )
+        if oftp_listen_options is not SENTINEL:
+            self.oftp_listen_options = self._define_object(
+                oftp_listen_options, OftpListenOptionsInfo
+            )
+        if oftp_partner_group is not SENTINEL:
+            self.oftp_partner_group = self._define_object(
+                oftp_partner_group, OftpPartnerGroupType
+            )
         if partner_group_id is not SENTINEL:
             self.partner_group_id = partner_group_id
         self._kwargs = kwargs
