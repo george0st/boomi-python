@@ -2,6 +2,50 @@
 from enum import Enum
 from .sentinel import was_value_set
 
+# Mapping SDK class names to Boomi API @type names
+# Needed for polymorphic types where SDK uses different casing than API
+TYPE_NAME_MAPPING = {
+    # MLLP Protocol
+    'MllpCommunicationOptions': 'MLLPCommunicationOptions',
+    'MllpSendSettings': 'MLLPSendSettings',
+    'MllpsslOptions': 'MLLPSSLOptions',
+    # HL7 Standard
+    'Hl7PartnerInfo': 'HL7PartnerInfo',
+    'Hl7Options': 'HL7Options',
+    # FTP/SFTP Protocol
+    'FtpCommunicationOptions': 'FTPCommunicationOptions',
+    'FtpSendSettings': 'FTPSendSettings',
+    'FtpsslOptions': 'FTPSSLOptions',
+    'SftpCommunicationOptions': 'SFTPCommunicationOptions',
+    'SftpSendSettings': 'SFTPSendSettings',
+    'SftpsshOptions': 'SFTPSSHOptions',
+    'SftpProxySettings': 'SFTPProxySettings',
+    # HTTP Protocol
+    'HttpCommunicationOptions': 'HTTPCommunicationOptions',
+    'HttpSendSettings': 'HTTPSendSettings',
+    'HttpsslOptions': 'HTTPSSLOptions',
+    'HttpoAuthSettings': 'HTTPOAuthSettings',
+    'HttpoAuth2Settings': 'HTTPOAuth2Settings',
+    # AS2 Protocol
+    'As2CommunicationOptions': 'AS2CommunicationOptions',
+    'As2SendSettings': 'AS2SendSettings',
+    'As2SendOptions': 'AS2SendOptions',
+    'As2SslOptions': 'AS2SSLOptions',
+    'As2PartnerInfo': 'AS2PartnerInfo',
+    'As2MdnOptions': 'AS2MDNOptions',
+    'As2MessageOptions': 'AS2MessageOptions',
+    # OFTP Protocol
+    'OftpCommunicationOptions': 'OFTPCommunicationOptions',
+    'OftpSendSettings': 'OFTPSendSettings',
+    'OftpPartnerInfo': 'OFTPPartnerInfo',
+    # X12 Standard
+    'X12PartnerInfo': 'X12PartnerInfo',
+    'X12Options': 'X12Options',
+    # EDIFACT Standard
+    'EdifactPartnerInfo': 'EDIFACTPartnerInfo',
+    'EdifactOptions': 'EDIFACTOptions',
+}
+
 
 class JsonMap:
     """
@@ -46,6 +90,12 @@ class JsonMap:
             attribute_dict = vars(self)
             result_dict = {}
 
+            # Add @type field for Boomi API polymorphic type support
+            # This is required for nested objects in TradingPartnerComponent
+            # Use mapping to convert SDK class names to API type names
+            class_name = self.__class__.__name__
+            result_dict['@type'] = TYPE_NAME_MAPPING.get(class_name, class_name)
+
             for key, value in attribute_dict.items():
                 if key == "_kwargs" or not was_value_set(value):
                     continue
@@ -86,6 +136,9 @@ class JsonMap:
             mapped_attributes = {}
 
             for key, value in mapped_data.items():
+                # Handle Boomi BigInteger format: ['BigInteger', 2575] -> 2575
+                if isinstance(value, list) and len(value) == 2 and value[0] == 'BigInteger':
+                    value = value[1]
                 mapped_key = reversed_map.get(key, key)
                 mapped_attributes[mapped_key] = value
 

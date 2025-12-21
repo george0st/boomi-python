@@ -37,10 +37,16 @@ class HttpHandler(BaseHandler):
         try:
             request_args = self._get_request_data(request)
 
+            # Ensure Accept header is set to request JSON responses
+            # This preserves proper types (integers, booleans) and @type annotations
+            headers = request.headers.copy() if request.headers else {}
+            if 'Accept' not in headers:
+                headers['Accept'] = 'application/json'
+
             result = requests.request(
                 request.method,
                 request.url,
-                headers=request.headers,
+                headers=headers,
                 timeout=self._timeout_in_seconds,
                 **request_args,
             )
@@ -77,10 +83,15 @@ class HttpHandler(BaseHandler):
         try:
             request_args = self._get_request_data(request)
 
+            # Ensure Accept header is set to request JSON responses
+            headers = request.headers.copy() if request.headers else {}
+            if 'Accept' not in headers:
+                headers['Accept'] = 'application/json'
+
             result = requests.request(
                 request.method,
                 request.url,
-                headers=request.headers,
+                headers=headers,
                 timeout=self._timeout_in_seconds,
                 stream=True,
                 **request_args,
