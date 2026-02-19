@@ -238,11 +238,13 @@ class PartnerCommunication(BaseModel):
             if mapped:
                 result['MLLPCommunicationOptions'] = mapped
 
-        # OFTP - pass through directly
+        # OFTP - pass through, stripping read-only keys
         if hasattr(self, 'oftp_communication_options') and self.oftp_communication_options:
             oftp = self.oftp_communication_options
             mapped = oftp._map() if hasattr(oftp, '_map') else oftp
             if mapped:
+                mapped.pop('CommunicationSetting', None)
+                mapped.pop('SharedCommunicationChannel', None)
                 result['OFTPCommunicationOptions'] = mapped
 
         return result
