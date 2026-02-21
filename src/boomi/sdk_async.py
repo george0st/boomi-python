@@ -477,3 +477,10 @@ class BoomiAsync(Boomi):
         self.refresh_secrets_manager = RefreshSecretsManagerServiceAsync(
             base_url=self._base_url
         )
+
+        # Re-apply auth, URL, and timeout to the new async service instances
+        # (super().__init__ applied these to sync services that were just replaced)
+        self.set_access_token(access_token)
+        self.set_basic_auth(username=username, password=password)
+        self.set_base_url(self._base_url)
+        self.set_timeout(timeout)
