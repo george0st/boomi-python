@@ -61,6 +61,9 @@ class ExecutionCountAccountGroupingExpression(BaseModel):
         :type operator: ExecutionCountAccountGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .execution_count_account_expression import ExecutionCountAccountExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ExecutionCountAccountExpression
             )

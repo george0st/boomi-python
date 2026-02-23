@@ -61,6 +61,9 @@ class ComponentEnvironmentAttachmentGroupingExpression(BaseModel):
         :type operator: ComponentEnvironmentAttachmentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .component_environment_attachment_expression import ComponentEnvironmentAttachmentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ComponentEnvironmentAttachmentExpression
             )

@@ -61,6 +61,9 @@ class TradingPartnerComponentGroupingExpression(BaseModel):
         :type operator: TradingPartnerComponentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .trading_partner_component_expression import TradingPartnerComponentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, TradingPartnerComponentExpression
             )

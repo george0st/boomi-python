@@ -59,6 +59,9 @@ class CustomTrackedFieldGroupingExpression(BaseModel):
         :type operator: CustomTrackedFieldGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .custom_tracked_field_expression import CustomTrackedFieldExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, CustomTrackedFieldExpression
             )

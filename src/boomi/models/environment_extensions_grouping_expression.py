@@ -61,6 +61,9 @@ class EnvironmentExtensionsGroupingExpression(BaseModel):
         :type operator: EnvironmentExtensionsGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .environment_extensions_expression import EnvironmentExtensionsExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, EnvironmentExtensionsExpression
             )

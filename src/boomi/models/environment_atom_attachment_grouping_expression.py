@@ -61,6 +61,9 @@ class EnvironmentAtomAttachmentGroupingExpression(BaseModel):
         :type operator: EnvironmentAtomAttachmentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .environment_atom_attachment_expression import EnvironmentAtomAttachmentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, EnvironmentAtomAttachmentExpression
             )

@@ -59,6 +59,9 @@ class MergeRequestGroupingExpression(BaseModel):
         :type operator: MergeRequestGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .merge_request_expression import MergeRequestExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, MergeRequestExpression
             )

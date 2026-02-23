@@ -61,6 +61,9 @@ class DeployedExpiredCertificateGroupingExpression(BaseModel):
         :type operator: DeployedExpiredCertificateGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .deployed_expired_certificate_expression import DeployedExpiredCertificateExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, DeployedExpiredCertificateExpression
             )

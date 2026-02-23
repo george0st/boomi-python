@@ -61,6 +61,9 @@ class EdifactConnectorRecordGroupingExpression(BaseModel):
         :type operator: EdifactConnectorRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .edifact_connector_record_expression import EdifactConnectorRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, EdifactConnectorRecordExpression
             )

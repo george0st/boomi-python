@@ -61,6 +61,9 @@ class DocumentCountAccountGroupGroupingExpression(BaseModel):
         :type operator: DocumentCountAccountGroupGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .document_count_account_group_expression import DocumentCountAccountGroupExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, DocumentCountAccountGroupExpression
             )

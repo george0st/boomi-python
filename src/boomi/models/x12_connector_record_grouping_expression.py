@@ -59,6 +59,9 @@ class X12ConnectorRecordGroupingExpression(BaseModel):
         :type operator: X12ConnectorRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .x12_connector_record_expression import X12ConnectorRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, X12ConnectorRecordExpression
             )

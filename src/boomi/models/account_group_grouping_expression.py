@@ -59,6 +59,9 @@ class AccountGroupGroupingExpression(BaseModel):
         :type operator: AccountGroupGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .account_group_expression import AccountGroupExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, AccountGroupExpression
             )

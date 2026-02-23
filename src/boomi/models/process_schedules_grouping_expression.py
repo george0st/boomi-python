@@ -59,6 +59,9 @@ class ProcessSchedulesGroupingExpression(BaseModel):
         :type operator: ProcessSchedulesGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .process_schedules_expression import ProcessSchedulesExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ProcessSchedulesExpression
             )

@@ -63,6 +63,9 @@ class SharedCommunicationChannelComponentGroupingExpression(BaseModel):
         :type operator: SharedCommunicationChannelComponentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .shared_communication_channel_component_expression import SharedCommunicationChannelComponentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, SharedCommunicationChannelComponentExpression
             )

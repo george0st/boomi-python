@@ -61,6 +61,9 @@ class TradingPartnerProcessingGroupGroupingExpression(BaseModel):
         :type operator: TradingPartnerProcessingGroupGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .trading_partner_processing_group_expression import TradingPartnerProcessingGroupExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, TradingPartnerProcessingGroupExpression
             )

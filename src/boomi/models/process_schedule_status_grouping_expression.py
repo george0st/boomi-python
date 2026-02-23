@@ -61,6 +61,9 @@ class ProcessScheduleStatusGroupingExpression(BaseModel):
         :type operator: ProcessScheduleStatusGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .process_schedule_status_expression import ProcessScheduleStatusExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ProcessScheduleStatusExpression
             )

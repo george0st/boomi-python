@@ -63,6 +63,9 @@ class EnvironmentMapExtensionUserDefinedFunctionSummaryGroupingExpression(BaseMo
         :type operator: EnvironmentMapExtensionUserDefinedFunctionSummaryGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .environment_map_extension_user_defined_function_summary_expression import EnvironmentMapExtensionUserDefinedFunctionSummaryExpression
+
             self.nested_expression = self._define_list(
                 nested_expression,
                 EnvironmentMapExtensionUserDefinedFunctionSummaryExpression,

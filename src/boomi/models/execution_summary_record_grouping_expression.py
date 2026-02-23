@@ -61,6 +61,9 @@ class ExecutionSummaryRecordGroupingExpression(BaseModel):
         :type operator: ExecutionSummaryRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .execution_summary_record_expression import ExecutionSummaryRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ExecutionSummaryRecordExpression
             )

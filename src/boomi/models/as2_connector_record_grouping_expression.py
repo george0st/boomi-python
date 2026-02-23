@@ -59,6 +59,9 @@ class As2ConnectorRecordGroupingExpression(BaseModel):
         :type operator: As2ConnectorRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .as2_connector_record_expression import As2ConnectorRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, As2ConnectorRecordExpression
             )

@@ -59,6 +59,9 @@ class AccountUserRoleGroupingExpression(BaseModel):
         :type operator: AccountUserRoleGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .account_user_role_expression import AccountUserRoleExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, AccountUserRoleExpression
             )

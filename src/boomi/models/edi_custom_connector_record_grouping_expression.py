@@ -61,6 +61,9 @@ class EdiCustomConnectorRecordGroupingExpression(BaseModel):
         :type operator: EdiCustomConnectorRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .edi_custom_connector_record_expression import EdiCustomConnectorRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, EdiCustomConnectorRecordExpression
             )

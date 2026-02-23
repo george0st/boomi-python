@@ -61,6 +61,9 @@ class EnvironmentMapExtensionsSummaryGroupingExpression(BaseModel):
         :type operator: EnvironmentMapExtensionsSummaryGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .environment_map_extensions_summary_expression import EnvironmentMapExtensionsSummaryExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, EnvironmentMapExtensionsSummaryExpression
             )

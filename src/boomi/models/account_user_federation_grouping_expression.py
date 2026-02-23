@@ -61,6 +61,9 @@ class AccountUserFederationGroupingExpression(BaseModel):
         :type operator: AccountUserFederationGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .account_user_federation_expression import AccountUserFederationExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, AccountUserFederationExpression
             )

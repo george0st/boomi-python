@@ -61,6 +61,9 @@ class IntegrationPackAtomAttachmentGroupingExpression(BaseModel):
         :type operator: IntegrationPackAtomAttachmentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .integration_pack_atom_attachment_expression import IntegrationPackAtomAttachmentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, IntegrationPackAtomAttachmentExpression
             )

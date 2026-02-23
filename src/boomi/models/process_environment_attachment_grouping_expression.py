@@ -61,6 +61,9 @@ class ProcessEnvironmentAttachmentGroupingExpression(BaseModel):
         :type operator: ProcessEnvironmentAttachmentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .process_environment_attachment_expression import ProcessEnvironmentAttachmentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ProcessEnvironmentAttachmentExpression
             )

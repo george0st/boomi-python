@@ -59,6 +59,9 @@ class ComponentMetadataGroupingExpression(BaseModel):
         :type operator: ComponentMetadataGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .component_metadata_expression import ComponentMetadataExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ComponentMetadataExpression
             )

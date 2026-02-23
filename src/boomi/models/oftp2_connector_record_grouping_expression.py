@@ -61,6 +61,9 @@ class Oftp2ConnectorRecordGroupingExpression(BaseModel):
         :type operator: Oftp2ConnectorRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .oftp2_connector_record_expression import Oftp2ConnectorRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, Oftp2ConnectorRecordExpression
             )

@@ -61,6 +61,9 @@ class OrganizationComponentGroupingExpression(BaseModel):
         :type operator: OrganizationComponentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .organization_component_expression import OrganizationComponentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, OrganizationComponentExpression
             )

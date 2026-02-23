@@ -61,6 +61,9 @@ class GenericConnectorRecordGroupingExpression(BaseModel):
         :type operator: GenericConnectorRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .generic_connector_record_expression import GenericConnectorRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, GenericConnectorRecordExpression
             )

@@ -61,6 +61,9 @@ class RosettaNetConnectorRecordGroupingExpression(BaseModel):
         :type operator: RosettaNetConnectorRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .rosetta_net_connector_record_expression import RosettaNetConnectorRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, RosettaNetConnectorRecordExpression
             )

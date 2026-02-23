@@ -61,6 +61,9 @@ class ThroughputAccountGroupGroupingExpression(BaseModel):
         :type operator: ThroughputAccountGroupGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .throughput_account_group_expression import ThroughputAccountGroupExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ThroughputAccountGroupExpression
             )

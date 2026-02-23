@@ -63,6 +63,9 @@ class EnvironmentMapExtensionExternalComponentGroupingExpression(BaseModel):
         :type operator: EnvironmentMapExtensionExternalComponentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .environment_map_extension_external_component_expression import EnvironmentMapExtensionExternalComponentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, EnvironmentMapExtensionExternalComponentExpression
             )

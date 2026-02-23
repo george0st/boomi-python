@@ -59,6 +59,9 @@ class ApiUsageCountGroupingExpression(BaseModel):
         :type operator: ApiUsageCountGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .api_usage_count_expression import ApiUsageCountExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ApiUsageCountExpression
             )

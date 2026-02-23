@@ -59,6 +59,9 @@ class ExecutionConnectorGroupingExpression(BaseModel):
         :type operator: ExecutionConnectorGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .execution_connector_expression import ExecutionConnectorExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ExecutionConnectorExpression
             )

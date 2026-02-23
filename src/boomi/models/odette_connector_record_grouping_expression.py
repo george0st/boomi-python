@@ -61,6 +61,9 @@ class OdetteConnectorRecordGroupingExpression(BaseModel):
         :type operator: OdetteConnectorRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .odette_connector_record_expression import OdetteConnectorRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, OdetteConnectorRecordExpression
             )

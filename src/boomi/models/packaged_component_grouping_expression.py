@@ -59,6 +59,9 @@ class PackagedComponentGroupingExpression(BaseModel):
         :type operator: PackagedComponentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .packaged_component_expression import PackagedComponentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, PackagedComponentExpression
             )

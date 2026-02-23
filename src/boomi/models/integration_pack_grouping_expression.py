@@ -59,6 +59,9 @@ class IntegrationPackGroupingExpression(BaseModel):
         :type operator: IntegrationPackGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .integration_pack_expression import IntegrationPackExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, IntegrationPackExpression
             )

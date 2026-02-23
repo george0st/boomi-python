@@ -63,6 +63,9 @@ class AtomConnectionFieldExtensionSummaryGroupingExpression(BaseModel):
         :type operator: AtomConnectionFieldExtensionSummaryGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .atom_connection_field_extension_summary_expression import AtomConnectionFieldExtensionSummaryExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, AtomConnectionFieldExtensionSummaryExpression
             )

@@ -59,6 +59,9 @@ class Hl7ConnectorRecordGroupingExpression(BaseModel):
         :type operator: Hl7ConnectorRecordGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .hl7_connector_record_expression import Hl7ConnectorRecordExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, Hl7ConnectorRecordExpression
             )

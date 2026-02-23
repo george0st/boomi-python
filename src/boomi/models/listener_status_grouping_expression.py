@@ -59,6 +59,9 @@ class ListenerStatusGroupingExpression(BaseModel):
         :type operator: ListenerStatusGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .listener_status_expression import ListenerStatusExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ListenerStatusExpression
             )

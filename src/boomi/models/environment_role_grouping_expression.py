@@ -59,6 +59,9 @@ class EnvironmentRoleGroupingExpression(BaseModel):
         :type operator: EnvironmentRoleGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .environment_role_expression import EnvironmentRoleExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, EnvironmentRoleExpression
             )

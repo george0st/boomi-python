@@ -61,6 +61,9 @@ class ProcessAtomAttachmentGroupingExpression(BaseModel):
         :type operator: ProcessAtomAttachmentGroupingExpressionOperator
         """
         if nested_expression is not SENTINEL:
+
+            from .process_atom_attachment_expression import ProcessAtomAttachmentExpression
+
             self.nested_expression = self._define_list(
                 nested_expression, ProcessAtomAttachmentExpression
             )
