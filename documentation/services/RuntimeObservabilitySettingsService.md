@@ -36,10 +36,41 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
-request_body = RuntimeObservabilitySettingsRequest()
+endpoint = {
+    "authentication": {"auth_type": "NONE"},
+    "url": "https://observability.example.com"
+}
+
+request_body = RuntimeObservabilitySettingsRequest(
+    runtime_id="runtimeId",
+    general_settings={
+        "observability_endpoint": endpoint,
+        "enabled": True,
+    },
+    log_settings={
+        "log_batch_size": 100,
+        "log_flush_interval": 5,
+        "log_max_queue_size": 1000,
+        "log_timeout_seconds": 30,
+        "observability_endpoint": endpoint,
+    },
+    metric_settings={
+        "metric_interval_seconds": 60,
+        "metric_timeout_seconds": 30,
+        "observability_endpoint": endpoint,
+    },
+    trace_settings={
+        "observability_endpoint": endpoint,
+        "trace_batch_size": 100,
+        "trace_flush_interval": 5,
+        "trace_max_queue_size": 1000,
+        "trace_timeout_seconds": 30,
+    },
+)
 
 result = sdk.runtime_observability_settings.update_runtime_observability_settings(
     request_body=request_body,
@@ -75,6 +106,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -109,6 +141,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 

@@ -136,38 +136,21 @@ except ApiError as e:
 
 ## 📚 Common Use Cases
 
-### Deploy a Process
+### Inspect Deployed Packages
 ```python
-from boomi.models import Deployment
+# Preferred deployment surface: packaged components and deployed packages
+deployed_packages = client.deployed_package.query_deployed_package()
 
-# Create a deployment
-deployment = client.deployment.create_deployment(
-    request_body=Deployment(
-        component_id="your-process-id",
-        environment_id="your-environment-id",
-        packaged_component_id="your-package-id"
-    )
-)
-
-print(f"Deployment created: {deployment.deployment_id}")
+for deployed_package in deployed_packages.result[:5]:
+    print(f"Deployment: {deployed_package.id_}")
 ```
 
 ### Monitor Executions
 ```python
-from boomi.models import ExecutionRecordQueryConfig
-
 # Query recent executions
-executions = client.execution_record.query_execution_record(
-    request_body=ExecutionRecordQueryConfig(
-        query_filter={
-            "property": "executionTime",
-            "operator": "GREATER_THAN",
-            "value": "2024-01-01T00:00:00Z"
-        }
-    )
-)
+executions = client.execution_record.query_execution_record()
 
-for execution in executions.result:
+for execution in executions.result[:5]:
     print(f"Execution {execution.execution_id}: {execution.status}")
 ```
 

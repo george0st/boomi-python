@@ -36,6 +36,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -75,6 +76,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -109,6 +111,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 

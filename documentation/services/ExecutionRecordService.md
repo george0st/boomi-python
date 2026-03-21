@@ -7,6 +7,7 @@ A list of all methods in the `ExecutionRecordService` service. Click on the meth
 | [query_execution_record](#query_execution_record)                   | For general information about the structure of QUERY filters, their sample payloads, and how to handle the paged results, refer to [Query filters](#section/Introduction/Query-filters) and [Query paging](#section/Introduction/Query-paging). |
 | [query_more_execution_record](#query_more_execution_record)         | To learn about using `queryMore`, refer to [Query paging](#section/Introduction/Query-paging).                                                                                                                                                  |
 | [async_get_execution_record](#async_get_execution_record)           | Retrieves the execution record asynchronously for the specified ID.                                                                                                                                                                             |
+| [get_execution_record](#get_execution_record)                       | Convenience wrapper for `async_get_execution_record()`.                                                                                                                                                                                         |
 
 ## query_execution_record
 
@@ -35,6 +36,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -89,6 +91,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -112,7 +115,7 @@ Retrieves the execution record asynchronously for the specified ID.
 
 **Return Type**
 
-`ExecutionRecord`
+`ExecutionRecord | None`
 
 **Example Usage Code Snippet**
 
@@ -123,10 +126,46 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
 result = sdk.execution_record.async_get_execution_record(id_="YOUR_EXECUTION_RECORD_ID")
+
+print(result)
+```
+
+## get_execution_record
+
+Convenience wrapper for `async_get_execution_record()`.
+
+- HTTP Method: `GET`
+- Endpoint: `/ExecutionRecord/async/{id}`
+
+**Parameters**
+
+| Name  | Type | Required | Description              |
+| :---- | :--- | :------- | :----------------------- |
+| id\_  | str  | ✅       | The execution record ID. |
+
+**Return Type**
+
+`ExecutionRecord | None`
+
+**Example Usage Code Snippet**
+
+```python
+from boomi import Boomi
+
+sdk = Boomi(
+    access_token="YOUR_ACCESS_TOKEN",
+    username="YOUR_USERNAME",
+    password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
+    timeout=10000
+)
+
+result = sdk.execution_record.get_execution_record(id_="YOUR_EXECUTION_RECORD_ID")
 
 print(result)
 ```

@@ -1,7 +1,7 @@
 # Boomi Python SDK
 
 [![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/downloads/)
-[![PyPI Version](https://img.shields.io/badge/pypi-1.1.0-green)](https://pypi.org/project/boomi/)
+[![PyPI Version](https://img.shields.io/pypi/v/boomi)](https://pypi.org/project/boomi/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 A Python SDK for the Boomi Platform API, providing programmatic access to the Boomi Enterprise Platform functionality. This SDK allows you to control and manage various objects associated with your Boomi account including processes, components, deployments, atoms, and more.
@@ -129,23 +129,31 @@ The SDK provides access to all major Boomi Platform API services:
 | **Account** | Account management | `sdk.account.get_account()` |
 | **Component** | Processes, connectors, maps | `sdk.component_metadata.query_component_metadata()` |
 | **Atom** | Runtime management | `sdk.atom.query_atom()` |
-| **Deployment** | Deploy components | `sdk.deployment.create_deployment()` |
+| **Deployed Package** | Inspect packaged deployments | `sdk.deployed_package.query_deployed_package()` |
 | **Environment** | Environment management | `sdk.environment.query_environment()` |
 | **Execution** | Process execution | `sdk.execution_request.create_execution_request()` |
 
 ### Example: Working with Components
 
 ```python
-from boomi.models import ComponentMetadataQueryConfig
+from boomi.models import (
+    ComponentMetadataQueryConfig,
+    ComponentMetadataQueryConfigQueryFilter,
+    ComponentMetadataSimpleExpression,
+    ComponentMetadataSimpleExpressionOperator,
+    ComponentMetadataSimpleExpressionProperty,
+)
 
 # Query all processes
 processes = sdk.component_metadata.query_component_metadata(
     request_body=ComponentMetadataQueryConfig(
-        query_filter={
-            "property": "type",
-            "operator": "EQUALS",
-            "value": "process"
-        }
+        query_filter=ComponentMetadataQueryConfigQueryFilter(
+            expression=ComponentMetadataSimpleExpression(
+                operator=ComponentMetadataSimpleExpressionOperator.EQUALS,
+                property=ComponentMetadataSimpleExpressionProperty.TYPE,
+                argument=["process"],
+            )
+        )
     )
 )
 
@@ -159,22 +167,14 @@ updated = sdk.component.update_component(
 )
 ```
 
-### Example: Managing Deployments
+### Example: Inspecting Deployed Packages
 
 ```python
-from boomi.models import Deployment
+# Preferred deployment surface: packaged components and deployed packages
+deployed_packages = sdk.deployed_package.query_deployed_package()
 
-# Create a deployment
-deployment = sdk.deployment.create_deployment(
-    request_body=Deployment(
-        packaged_component_id="package-id",
-        environment_id="environment-id",
-        notes="Deploying new version"
-    )
-)
-
-# Query deployments
-deployments = sdk.deployment.query_deployment()
+for deployed_package in deployed_packages.result[:5]:
+    print(deployed_package.id_)
 ```
 
 ### Example: Executing Processes

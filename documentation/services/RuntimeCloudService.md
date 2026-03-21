@@ -39,10 +39,14 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
-request_body = RuntimeCloud()
+request_body = RuntimeCloud(
+    classification="PRIVATE",
+    name="Example Runtime Cloud"
+)
 
 result = sdk.runtime_cloud.create_runtime_cloud(request_body=request_body)
 
@@ -75,6 +79,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -111,10 +116,14 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
-request_body = RuntimeCloud()
+request_body = RuntimeCloud(
+    classification="PRIVATE",
+    name="Example Runtime Cloud"
+)
 
 result = sdk.runtime_cloud.update_runtime_cloud(
     request_body=request_body,
@@ -150,6 +159,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -183,6 +193,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -227,6 +238,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -273,6 +285,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 

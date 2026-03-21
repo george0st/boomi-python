@@ -11,7 +11,7 @@ A list of all methods in the `CloudAttachmentSecretsConfigurationService` servic
 Creates a CloudAttachmentSecretsConfiguration for the specified container.
 
 - HTTP Method: `POST`
-- Endpoint: `/CloudAttachmentSecretsConfiguration/{containerId}`
+- Endpoint: `/cloudAttachmentSecretsConfiguration/{containerId}`
 
 **Parameters**
 
@@ -34,10 +34,20 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
-request_body = CloudAttachmentSecretsConfigurationRequest()
+request_body = CloudAttachmentSecretsConfigurationRequest(
+    container_id="containerId",
+    secrets_manager_provider={
+        "aws": {
+            "aws_access_key_id": "AKIA...",
+            "aws_region": "us-east-1",
+            "aws_secret_access_key": "secret",
+        }
+    },
+)
 
 result = sdk.cloud_attachment_secrets_configuration.create_cloud_attachment_secrets_configuration(
     request_body=request_body,

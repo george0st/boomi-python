@@ -36,10 +36,17 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
-request_body = RuntimeProperties()
+request_body = RuntimeProperties(
+    standard_properties={},
+    system_properties={},
+    custom_runtime_properties={"property": []},
+    custom_system_properties={"property": []},
+    partial_update=True
+)
 
 result = sdk.runtime_properties.update_runtime_properties(
     request_body=request_body,
@@ -75,6 +82,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 
@@ -109,6 +117,7 @@ sdk = Boomi(
     access_token="YOUR_ACCESS_TOKEN",
     username="YOUR_USERNAME",
     password="YOUR_PASSWORD",
+    account_id="YOUR_ACCOUNT_ID",
     timeout=10000
 )
 

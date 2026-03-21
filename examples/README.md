@@ -112,6 +112,7 @@ Examples are organized by integration development lifecycle stages:
 - `analyze_execution_metrics.py` - Analyze execution performance metrics ✅
 - `monitor_certificates.py` - Monitor certificate expiration ✅
 - `manage_connector_documents.py` - Query and download connector documents ✅
+- `full_document_retrieval_chain.py` - Walk the full execution-to-document download chain ✅
 
 ### **10_version_compare/** - Version Control & Comparison
 - `compare_component_versions.py` - Compare component versions ✅
