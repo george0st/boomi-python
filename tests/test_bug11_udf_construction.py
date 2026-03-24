@@ -79,7 +79,7 @@ class TestUdfListAutoWrap:
         assert isinstance(obj.steps, MapExtensionsFunctionSteps)
 
     def test_unmap_with_plain_lists(self):
-        """The exact BUG-11 crash path: _unmap with user-provided flat data."""
+        """User-constructed dict path: lowercase keys + plain lists (MCP handler scenario)."""
         data = {
             "name": "_TEST",
             "inputs": [{"name": "in1", "key": 1}],
