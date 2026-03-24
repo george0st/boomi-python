@@ -31,6 +31,20 @@ class BaseModel:
             return None
         elif isinstance(input_data, input_class):
             return input_data
+        elif isinstance(input_data, list):
+            # Auto-wrap list for wrapper models that have a single list field
+            # e.g., MapExtensionsInputs wraps {"Input": [...]} → input=[...]
+            json_mapping = getattr(
+                input_class,
+                '_JsonMap__json_mapping',
+                None,
+            )
+            if json_mapping and len(json_mapping) == 1:
+                wrapper_key = list(json_mapping.values())[0]
+                return input_class._unmap({wrapper_key: input_data})
+            raise TypeError(
+                f"Expected dict or {input_class.__name__} for object field, got list"
+            )
         else:
             return input_class._unmap(input_data)
 

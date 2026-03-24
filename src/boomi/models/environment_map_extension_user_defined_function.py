@@ -56,10 +56,10 @@ class EnvironmentMapExtensionUserDefinedFunction(BaseModel):
 
     def __init__(
         self,
-        inputs: MapExtensionsInputs,
-        mappings: MapExtensionsFunctionMappings,
-        outputs: MapExtensionsOutputs,
-        steps: MapExtensionsFunctionSteps,
+        inputs: MapExtensionsInputs = SENTINEL,
+        mappings: MapExtensionsFunctionMappings = SENTINEL,
+        outputs: MapExtensionsOutputs = SENTINEL,
+        steps: MapExtensionsFunctionSteps = SENTINEL,
         created_by: str = SENTINEL,
         created_date: str = SENTINEL,
         deleted: bool = SENTINEL,
@@ -73,14 +73,14 @@ class EnvironmentMapExtensionUserDefinedFunction(BaseModel):
     ):
         """EnvironmentMapExtensionUserDefinedFunction
 
-        :param inputs: Lists the function's input and outputs according to their user-given names and keys. You must list inputs and outputs sequentially in order according to their key values. When creating or updating functions, it requires all input and output values in the request regardless if they are to be mapped or populated with a default value.   The maximum number of inputs or outputs is 100.
-        :type inputs: MapExtensionsInputs
-        :param mappings: Defines the mapping of inputs and outputs for the user-defined function and each function step. It uses the following attributes:  1. fromFunction - represents the function ID from which you are mapping.  2. fromKey - represents the function's output key from which you are mapping.  3. toFunction - represents the function ID to which you are mapping.  4. toKey - represents the function's input key to which you are mapping.
-        :type mappings: MapExtensionsFunctionMappings
-        :param outputs: Lists the function's input and outputs according to their user-given names and keys. You must list inputs and outputs sequentially in order according to their key values. See the following row for more information. When creating or updating functions, it requires all input and output values in the request regardless if they are to be mapped or populated with a default value.   The maximum number of inputs or outputs is 100.
-        :type outputs: MapExtensionsOutputs
-        :param steps: Defines the individual function steps and the order in which they need to occur within the greater user-defined function. The following attributes are used: 1.`position` - represents the step's number order in the greater function. 2.`cacheType` - indicates the caching behavior of the individual function step. The allowed `cacheType` values are:1.`None` \(default, if omitted in the request\)— It does not use Map function caching. 2. `ByDocument` — Caches the map function’s input and output values for each processed document. 3. `ByMap` — Caches the map function’s input and output values for each processed map. -   `id` - represents the function step's ID in the format of "FUNCEXT--xxxxxxxxxx". 4. `type` - represents the type of function \(for example, "MathCeil" or "CustomScripting"\).\<br /\> Within the `Steps` element, you also need to define the following `input` and `output` variables for each function step:\<br /\>1. `default` - Optional. Specifies the input value that the function uses if not provided by the user.\<br /\>2. `name` - the user-defined name of the associated input or output.   \>**Note:** The user interface automatically uses the used function type as the step name, but you can use this API object to change function step names. 3. `key` - the number ID assigned to a function step. This key is used to map function steps together in the `Mappings` attribute.
-        :type steps: MapExtensionsFunctionSteps
+        :param inputs: Lists the function’s input and outputs according to their user-given names and keys. You must list inputs and outputs sequentially in order according to their key values. When creating or updating functions, it requires all input and output values in the request regardless if they are to be mapped or populated with a default value.   The maximum number of inputs or outputs is 100., defaults to None
+        :type inputs: MapExtensionsInputs, optional
+        :param mappings: Defines the mapping of inputs and outputs for the user-defined function and each function step. It uses the following attributes:  1. fromFunction - represents the function ID from which you are mapping.  2. fromKey - represents the function’s output key from which you are mapping.  3. toFunction - represents the function ID to which you are mapping.  4. toKey - represents the function’s input key to which you are mapping., defaults to None
+        :type mappings: MapExtensionsFunctionMappings, optional
+        :param outputs: Lists the function’s input and outputs according to their user-given names and keys. You must list inputs and outputs sequentially in order according to their key values. See the following row for more information. When creating or updating functions, it requires all input and output values in the request regardless if they are to be mapped or populated with a default value.   The maximum number of inputs or outputs is 100., defaults to None
+        :type outputs: MapExtensionsOutputs, optional
+        :param steps: Defines the individual function steps and the order in which they need to occur within the greater user-defined function. The following attributes are used: 1.`position` - represents the step’s number order in the greater function. 2.`cacheType` - indicates the caching behavior of the individual function step. The allowed `cacheType` values are:1.`None` \(default, if omitted in the request\)— It does not use Map function caching. 2. `ByDocument` — Caches the map function’s input and output values for each processed document. 3. `ByMap` — Caches the map function’s input and output values for each processed map. -   `id` - represents the function step’s ID in the format of "FUNCEXT--xxxxxxxxxx". 4. `type` - represents the type of function \(for example, "MathCeil" or "CustomScripting"\).\<br /\> Within the `Steps` element, you also need to define the following `input` and `output` variables for each function step:\<br /\>1. `default` - Optional. Specifies the input value that the function uses if not provided by the user.\<br /\>2. `name` - the user-defined name of the associated input or output.   \>**Note:** The user interface automatically uses the used function type as the step name, but you can use this API object to change function step names. 3. `key` - the number ID assigned to a function step. This key is used to map function steps together in the `Mappings` attribute., defaults to None
+        :type steps: MapExtensionsFunctionSteps, optional
         :param created_by: The user ID of the user who created the user-defined function., defaults to None
         :type created_by: str, optional
         :param created_date: Timestamp of the creation of the user-defined function., defaults to None
@@ -100,10 +100,14 @@ class EnvironmentMapExtensionUserDefinedFunction(BaseModel):
         :param name: Required. Represents the name of the user-defined function component., defaults to None
         :type name: str, optional
         """
-        self.inputs = self._define_object(inputs, MapExtensionsInputs)
-        self.mappings = self._define_object(mappings, MapExtensionsFunctionMappings)
-        self.outputs = self._define_object(outputs, MapExtensionsOutputs)
-        self.steps = self._define_object(steps, MapExtensionsFunctionSteps)
+        if inputs is not SENTINEL:
+            self.inputs = self._define_object(inputs, MapExtensionsInputs)
+        if mappings is not SENTINEL:
+            self.mappings = self._define_object(mappings, MapExtensionsFunctionMappings)
+        if outputs is not SENTINEL:
+            self.outputs = self._define_object(outputs, MapExtensionsOutputs)
+        if steps is not SENTINEL:
+            self.steps = self._define_object(steps, MapExtensionsFunctionSteps)
         if created_by is not SENTINEL:
             self.created_by = created_by
         if created_date is not SENTINEL:

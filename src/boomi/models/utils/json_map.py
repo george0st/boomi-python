@@ -132,6 +132,11 @@ class JsonMap:
             :return: An instance of the class with attribute values assigned from the dictionary.
             :rtype: cls
             """
+            if not isinstance(mapped_data, dict):
+                raise TypeError(
+                    f"{cls.__name__}._unmap() expects a dict, got {type(mapped_data).__name__}. "
+                    f"If passing a list, wrap it in the appropriate container structure."
+                )
             reversed_map = {v: k for k, v in cls.__json_mapping.items()}
             mapped_attributes = {}
 
