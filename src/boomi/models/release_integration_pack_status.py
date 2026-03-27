@@ -117,13 +117,13 @@ class ReleaseIntegrationPackStatus(BaseModel):
     :type release_status: ReleaseStatus, optional
     :param request_id: A unique ID assigned by the system to the integration pack release request., defaults to None
     :type request_id: str, optional
-    :param response_status_code: response_status_code
-    :type response_status_code: int
+    :param response_status_code: response_status_code, defaults to None
+    :type response_status_code: int, optional
     """
 
     def __init__(
         self,
-        response_status_code: int,
+        response_status_code: int = SENTINEL,
         release_packaged_components: ReleasePackagedComponents = SENTINEL,
         installation_type: ReleaseIntegrationPackStatusInstallationType = SENTINEL,
         integration_pack_id: str = SENTINEL,
@@ -152,8 +152,8 @@ class ReleaseIntegrationPackStatus(BaseModel):
         :type release_status: ReleaseStatus, optional
         :param request_id: A unique ID assigned by the system to the integration pack release request., defaults to None
         :type request_id: str, optional
-        :param response_status_code: response_status_code
-        :type response_status_code: int
+        :param response_status_code: response_status_code, defaults to None
+        :type response_status_code: int, optional
         """
         if release_packaged_components is not SENTINEL:
             self.release_packaged_components = self._define_object(
@@ -183,5 +183,6 @@ class ReleaseIntegrationPackStatus(BaseModel):
             )
         if request_id is not SENTINEL:
             self.request_id = request_id
-        self.response_status_code = response_status_code
+        if response_status_code is not SENTINEL:
+            self.response_status_code = response_status_code
         self._kwargs = kwargs
