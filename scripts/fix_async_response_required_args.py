@@ -53,14 +53,14 @@ def fix_async_response_file(filepath):
     # Variant A: plain assignment
     content = re.sub(
         r'^( {8})(self\.response_status_code = response_status_code)\n',
-        r'\1if response_status_code is not SENTINEL:\n\1    \2\n',
+        r'\1if response_status_code is not SENTINEL:\n\1    self.response_status_code = int(response_status_code)\n',
         content,
         flags=re.MULTILINE,
     )
     # Variant B: int() wrapping (seen in ListenerStatusAsyncResponse)
     content = re.sub(
         r'^( {8})self\.response_status_code = int\(response_status_code\)\n',
-        r'\1if response_status_code is not SENTINEL:\n\1    self.response_status_code = response_status_code\n',
+        r'\1if response_status_code is not SENTINEL:\n\1    self.response_status_code = int(response_status_code)\n',
         content,
         flags=re.MULTILINE,
     )
@@ -116,7 +116,7 @@ def fix_async_operation_token_result(filepath):
     )
     content = re.sub(
         r'^( {8})(self\.response_status_code = response_status_code)\n',
-        r'\1if response_status_code is not SENTINEL:\n\1    \2\n',
+        r'\1if response_status_code is not SENTINEL:\n\1    self.response_status_code = int(response_status_code)\n',
         content,
         flags=re.MULTILINE,
     )
