@@ -184,5 +184,5 @@ class ReleaseIntegrationPackStatus(BaseModel):
         if request_id is not SENTINEL:
             self.request_id = request_id
         if response_status_code is not SENTINEL:
-            self.response_status_code = response_status_code
+            self.response_status_code = int(response_status_code)
         self._kwargs = kwargs

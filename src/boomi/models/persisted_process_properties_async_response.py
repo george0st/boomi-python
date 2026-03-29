@@ -41,9 +41,9 @@ class PersistedProcessPropertiesAsyncResponse(BaseModel):
         :type result: List[PersistedProcessProperties], optional
         """
         if response_status_code is not SENTINEL:
-            self.response_status_code = response_status_code
+            self.response_status_code = int(response_status_code)
         if number_of_results is not SENTINEL:
-            self.number_of_results = number_of_results
+            self.number_of_results = int(number_of_results)
         if result is not SENTINEL:
             self.result = self._define_list(result, PersistedProcessProperties)
         self._kwargs = kwargs

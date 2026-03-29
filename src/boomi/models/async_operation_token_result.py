@@ -27,5 +27,5 @@ class AsyncOperationTokenResult(BaseModel):
         if async_token is not SENTINEL:
             self.async_token = self._define_object(async_token, AsyncToken)
         if response_status_code is not SENTINEL:
-            self.response_status_code = response_status_code
+            self.response_status_code = int(response_status_code)
         self._kwargs = kwargs
